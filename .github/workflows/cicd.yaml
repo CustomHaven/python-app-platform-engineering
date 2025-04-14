@@ -37,10 +37,8 @@ jobs:
       -
         name: Modify values file
         shell: bash
-        env:
-          COMMIT_ID: ${{ needs.ci.outputs.commit_id }}
         run: |
-          echo $(env.COMMIT_ID)
+          echo ${{ needs.ci.outputs.commit_id }}
       -
         name: Install ArgoCD
         shell: bash
