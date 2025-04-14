@@ -11,7 +11,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - 
+      -
         name: Shorten commit ID
         shell: bash
         run: |
@@ -28,10 +28,19 @@ jobs:
         with:
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKER_APP_NAME }}:${{ env.COMMIT_ID }}
+    outputs:
+      commit_id: ${{ env.COMMIT_ID }}
   cd:
     runs-on: self-hosted
     needs: ci
     steps:
+      -
+        name: Modify values file
+        shell: bash
+        env:
+          COMMIT_ID: ${{ needs.ci.outputs.commit_id }}
+        run: |
+          echo $(env.COMMIT_ID)
       -
         name: Install ArgoCD
         shell: bash
