@@ -20,6 +20,7 @@ def info():
         "third message": "More message!",
         "forth message": "yet another message",
         "fifth message": "five messages",
+        "6": 6
     })
 
 @app.route('/api/v1/healthz')
