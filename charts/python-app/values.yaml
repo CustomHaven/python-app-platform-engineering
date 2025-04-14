@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: customhaven/python-app
   pullPolicy: IfNotPresent
-  tag: 1ca4829
+  tag: 87ff713
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
