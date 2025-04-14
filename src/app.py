@@ -17,7 +17,8 @@ def info():
         'hostname': socket.gethostname(),
         'message': 'You are doing great, little human! I am the robot coming for you!',
         "another message": "Another message for you!",
-        "third message": "More message!"
+        "third message": "More message!",
+        "forth message": "yet another message",
     })
 
 @app.route('/api/v1/healthz')
