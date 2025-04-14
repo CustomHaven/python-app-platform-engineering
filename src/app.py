@@ -22,7 +22,8 @@ def info():
         "fifth message": "five messages",
         "6": 6,
         "7": 7,
-        "8": 8
+        "8": 8,
+        "9": 9,
     })
 
 @app.route('/api/v1/healthz')
