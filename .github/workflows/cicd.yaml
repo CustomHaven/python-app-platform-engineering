@@ -1,0 +1,47 @@
+name: cicd
+
+on:
+  push:
+    paths:
+      - src/**
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: self-hosted
+    steps:
+      - 
+        name: Shorten commit ID
+        shell: bash
+        run: |
+          echo "COMMIT_ID=${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKER_APP_NAME }}:${{ env.COMMIT_ID }}
+  cd:
+    runs-on: self-hosted
+    needs: ci
+    steps:
+      - 
+        name: Login to argocd
+        shell: bash
+        run: |
+          argocd login ${{ secrets.ARGO_SERVER }} \
+            --insecure --grpc-web \
+            --username ${{ secrets.ARGO_USER }} \
+            --password ${{ secrets.ARGO_PASS }}
+      -
+        name: Sync argocd app
+        shell: bash
+        run: | 
+          argocd app sync ${{ vars.DOCKER_APP_NAME }}
