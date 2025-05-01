@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: python-app-platform-engineering
+  description: Python App that displays time.
+  # Example for optional annotations
+  annotations:
+    github.com/project-slug: CustomHaven/python-app-platform-engineering
+  #   backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  owner: development
+  lifecycle: experimental
