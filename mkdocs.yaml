@@ -1,0 +1,15 @@
+site_name: 'Python App'
+site_description: 'Main documentation for the python-app-platform-engineering'
+repo_url: https://github.com/CustomHaven/python-app-platform-engineering
+edit_uri: edit/main/docs
+
+plugins:
+  - techdocs-core
+  # - redirects:
+  #     redirect_maps:
+  #       'index.md': 'overview/what-is-backstage.md'
+
+# For sidebar navigation on https://backstage.io/, see `microsite/sidebars.js`
+nav:
+  - Overview:
+      - Getting Started: 'docs/index.md'
